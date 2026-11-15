@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 245 247 243; --surface: 255 255 255; --sunken: 237 242 236; --ink: 23 33 28; --muted: 91 107 98; --line: 217 226 218;
+  --primary: 47 111 78; --on-primary: 255 255 255; --primary-soft: 224 238 229; --accent: 232 163 23;
+  --danger: 200 50 44; --danger-soft: 252 232 230; --warn: 150 94 8; --warn-soft: 253 243 219; --ok: 36 120 70; --ok-soft: 224 242 231;
+}
+.dark {
+  --bg: 14 21 17; --surface: 22 32 25; --sunken: 29 42 33; --ink: 233 240 234; --muted: 157 176 163; --line: 42 58 47;
+  --primary: 111 190 143; --on-primary: 10 26 16; --primary-soft: 30 52 40; --accent: 240 184 74;
+  --danger: 240 98 91; --danger-soft: 60 28 27; --warn: 227 163 59; --warn-soft: 54 41 18; --ok: 99 194 138; --ok-soft: 28 52 38;
+}
+
+@layer base {
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
+  body { @apply bg-bg text-ink font-sans antialiased; }
+  h1, h2, h3 { @apply font-display tracking-tight; }
+  :focus-visible { outline: 3px solid rgb(var(--primary)); outline-offset: 2px; border-radius: 6px; }
+  input, select, textarea { @apply bg-surface text-ink; }
+  ::placeholder { color: rgb(var(--muted) / .8); }
+}
+
+@keyframes sos-ring { 0% { box-shadow: 0 0 0 0 rgb(var(--danger) / .5) } 100% { box-shadow: 0 0 0 20px rgb(var(--danger) / 0) } }
+.sos-pulse { animation: sos-ring 2.4s ease-out infinite; }
+@keyframes draw { to { stroke-dashoffset: 0 } }
+.draw { stroke-dasharray: var(--len, 400); stroke-dashoffset: var(--len, 400); animation: draw 1.4s ease-out .1s forwards; }
+@keyframes orb { 0%,100% { transform: scale(1) } 50% { transform: scale(1.12) } }
+.orb-live { animation: orb 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .sos-pulse, .orb-live, .animate-rise { animation: none; }
+  .draw { animation: none; stroke-dashoffset: 0; }
+}
+@media print {
+  body { background: #fff; color: #000; }
+  .no-print { display: none !important; }
+}
