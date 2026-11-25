@@ -1,0 +1,17 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Frontend
+node_modules/
+dist/
+
+# Backend
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Editor
+.vscode/

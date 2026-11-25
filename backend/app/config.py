@@ -7,7 +7,7 @@ from typing import Mapping
 from dotenv import load_dotenv
 
 # Resolve .env relative to the backend folder so `uvicorn` works from any working directory.
-load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 
 @dataclass
